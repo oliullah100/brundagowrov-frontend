@@ -218,6 +218,10 @@ const ChatComponent = () => {
       });
     });
 
+  socket.on("error_message", ({ error }) => {
+    alert(error); // or show in UI
+  });
+
     // Clean up on unmount
     return () => {
       socket.off("connect");
@@ -225,6 +229,7 @@ const ChatComponent = () => {
       socket.off("message_saved");
       socket.off("assistant_message_token");
       socket.off("assistant_message_done");
+      socket.off("error_message");
     };
   }, []);
 
